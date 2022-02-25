@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import Provider from './context/Context';
 import AppRoutes from './AppRoutes';
 
 const App: FC = () => {
   return (
-    <div>
+    <Provider>
       <AppRoutes />
-    </div>
+    </Provider>
   );
 };
 
