@@ -1,10 +1,8 @@
-import { useContext, FC } from 'react';
-import { Context } from '../context/Context';
+import { FC } from 'react';
+import { Posts } from '../components';
 
 const Wall: FC = () => {
-  const { posts } = useContext(Context);
-
-  return <div className="text-blue-500">wall</div>;
+  return <Posts />;
 };
 
 export default Wall;
