@@ -4,7 +4,7 @@ import { Context } from '../context/Context';
 const Wall: FC = () => {
   const { posts } = useContext(Context);
 
-  return <div>Wall</div>;
+  return <div className="text-blue-500">wall</div>;
 };
 
 export default Wall;
