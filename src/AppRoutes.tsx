@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Wall } from './pages';
+import { Route, Routes } from 'react-router-dom';
+import { SignUpIn, Wall } from './pages';
 
 const AppRoutes: FC = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Wall />} />
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Wall />} />
+    <Route path="/sign-up" element={<SignUpIn />} />
+    <Route path="/sign-in" element={<SignUpIn />} />
+  </Routes>
 );
 
 export default AppRoutes;
