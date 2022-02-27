@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import AVATAR from '../../assets';
+import AVATAR from '../../assets/avatars';
 
 const Avatars: FC = () => {
   return (

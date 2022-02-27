@@ -48,8 +48,6 @@ const Provider = ({ children }: { children: any }) => {
   const getLoggedUser = () => {
     const loggedUser = JSON.parse(localStorage.getItem('user') || '{}');
     const loggedUserToken = localStorage.getItem('token');
-    console.log('user', loggedUser);
-    console.log('token', loggedUserToken);
     if (loggedUser && loggedUserToken) {
       setUser(loggedUser);
       setToken(loggedUserToken);
