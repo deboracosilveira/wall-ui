@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import logo from '../../assets/logo.png';
 import roundedLogo from '../../assets/roundedLogo.png';
 import User from '../../types/user';
@@ -9,12 +9,25 @@ interface Props {
 const AuthedBanner: FC<Props> = ({ user }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
+  const container = useRef<any>(null);
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!container.current.contains(event.target)) {
+        if (!showUserMenu) return;
+        setShowUserMenu(false);
+      }
+    };
+
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [showUserMenu, container]);
+
   return (
     <div className="flex w-full items-center justify-between">
       <img src={logo} alt="logo" className="hidden w-52 md:block" />
       <img src={roundedLogo} alt="rounded logo" className="w-12 md:hidden" />
 
-      <div className="relative">
+      <div ref={container} className="relative">
         <button className="menu" onClick={() => setShowUserMenu(!showUserMenu)}>
           <i className="fa-solid fa-circle-user text-5xl text-primary"></i>
         </button>
