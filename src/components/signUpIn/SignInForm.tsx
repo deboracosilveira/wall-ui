@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Input } from '..';
+import { Link, useLocation } from 'react-router-dom';
+import { Alert, Button, Input } from '..';
 
 const SignInForm: FC = () => {
+  const redirectFromConfirmation = useLocation().search.includes('confirmed');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,14 +17,26 @@ const SignInForm: FC = () => {
         <h2 className="my-6 text-center text-3xl font-extrabold text-gray-900">
           Sign in
         </h2>
-        <p className="font-light">
-          Don’t have an account?
-          <Link
-            to="/sign-up"
-            className="ml-2 font-medium text-primary hover:underline">
-            Sign up
-          </Link>
-        </p>
+        {redirectFromConfirmation && (
+          <div className="mb-6">
+            <Alert
+              message={
+                'Hey, your account has been successfully confirmed! Now you can sign in.'
+              }
+              type="success"
+            />
+          </div>
+        )}
+        {!redirectFromConfirmation && (
+          <p className="font-light">
+            Don’t have an account?
+            <Link
+              to="/sign-up"
+              className="ml-2 font-medium text-primary hover:underline">
+              Sign up
+            </Link>
+          </p>
+        )}
 
         <div className="mt-6 space-y-6">
           <Input label="Email" type="email" value={email} onChange={setEmail} />
