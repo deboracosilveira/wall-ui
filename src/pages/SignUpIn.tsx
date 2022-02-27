@@ -1,14 +1,16 @@
 import { FC } from 'react';
-import { Avatars, SignUpForm } from '../components';
+import { Avatars, SignInForm, SignUpForm } from '../components';
 
 interface Props {
   signUp?: boolean;
 }
 
 const SignUpIn: FC<Props> = ({ signUp }) => {
+  document.body.style.background = 'white';
+
   return (
     <div className="flex min-h-screen">
-      <SignUpForm signUp={signUp} />
+      {signUp ? <SignUpForm /> : <SignInForm />}
       <Avatars />
     </div>
   );

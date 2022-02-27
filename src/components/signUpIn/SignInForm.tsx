@@ -1,36 +1,31 @@
-import { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Alert, Button, Input } from '..';
-import { Context } from '../../context/Context';
+import { Button, Input } from '..';
 
-const SignUpForm: FC = () => {
-  const { signUserUp, signUpResponse } = useContext(Context);
-
-  const [name, setName] = useState('');
+const SignInForm: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    signUserUp(name, email, password);
+    console.log('submit');
   };
 
   return (
     <div className="flex-1 flex-col justify-center py-16 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
       <div className="mx-auto w-full max-w-sm lg:w-96">
         <h2 className="my-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign up
+          Sign in
         </h2>
         <p className="font-light">
-          Already have an account?
+          Don’t have an account?
           <Link
-            to="/sign-in"
+            to="/sign-up"
             className="ml-2 font-medium text-primary hover:underline">
-            Sign in
+            Sign up
           </Link>
         </p>
 
         <div className="mt-6 space-y-6">
-          <Input label="Name" type="text" value={name} onChange={setName} />
           <Input label="Email" type="email" value={email} onChange={setEmail} />
           <Input
             label="Password"
@@ -39,13 +34,7 @@ const SignUpForm: FC = () => {
             onChange={setPassword}
           />
           <div className="flex flex-col gap-4">
-            {signUpResponse && (
-              <Alert
-                message={signUpResponse.message}
-                type={signUpResponse.type}
-              />
-            )}
-            <Button onClick={handleSubmit} title="Sign up" type="secondary" />
+            <Button onClick={handleSubmit} title="Sign in" type="secondary" />
           </div>
         </div>
       </div>
@@ -53,4 +42,4 @@ const SignUpForm: FC = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
