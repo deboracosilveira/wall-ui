@@ -1,14 +1,15 @@
 import { FC, useContext, useState } from 'react';
 import { Context } from '../../context/Context';
-import { Alert, Button } from '..';
+import { Button } from '..';
 
 const PostForm: FC = () => {
-  const { user } = useContext(Context);
+  const { user, newPost } = useContext(Context);
 
   const [content, setContent] = useState('');
 
   const handleSubmit = async () => {
-    console.log(content);
+    await newPost(content);
+    setContent('');
   };
 
   if (!user) return null;

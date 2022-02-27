@@ -1,10 +1,10 @@
 import { FC, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Alert, Button, Input } from '..';
 import { Context } from '../../context/Context';
 
 const SignUpForm: FC = () => {
-  const { signUserUp, signUpResponse } = useContext(Context);
+  const { signUserUp, signUpResponse, user } = useContext(Context);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,6 +13,8 @@ const SignUpForm: FC = () => {
   const handleSubmit = () => {
     signUserUp(name, email, password);
   };
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <div className="flex-1 flex-col justify-center py-16 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">

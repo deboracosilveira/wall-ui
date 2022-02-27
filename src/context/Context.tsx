@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
-import { getAllPosts } from '../services/posts';
+import { getAllPosts, creatPost } from '../services/posts';
 import { registerUser, starNewUserSession } from '../services/users';
 import Post from '../types/post';
 import User from '../types/user';
@@ -17,6 +17,11 @@ const Provider = ({ children }: { children: any }) => {
   const getPosts = async () => {
     const allPosts = await getAllPosts();
     setPosts(allPosts.data);
+  };
+
+  const newPost = async (content: string) => {
+    await creatPost(content);
+    getPosts();
   };
 
   const signUserUp = async (name: string, email: string, password: string) => {
@@ -65,7 +70,8 @@ const Provider = ({ children }: { children: any }) => {
     signUpResponse,
     signUserIn,
     signInResponse,
-    user
+    user,
+    newPost
   };
 
   return (
