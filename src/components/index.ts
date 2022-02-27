@@ -1,3 +1,4 @@
+export { default as Alert } from './alert/Alert';
 export { default as Avatars } from './signUpIn/Avatars';
 export { default as Button } from './button/Button';
 export { default as Header } from './header/Header';

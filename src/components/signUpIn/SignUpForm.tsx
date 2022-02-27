@@ -1,12 +1,14 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Input, Button } from '..';
+import { Alert, Button, Input } from '..';
 
 interface Props {
   signUp?: boolean;
 }
 
 const SignUpForm: FC<Props> = ({ signUp }) => {
+  document.body.style.background = 'white';
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,9 +19,9 @@ const SignUpForm: FC<Props> = ({ signUp }) => {
 
   return (
     <div className="flex-1 flex-col justify-center py-16 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-      <div className="mx-auto w-full max-w-sm border border-blue-600 lg:w-96">
-        <h2 className="my-4 text-center text-3xl font-extrabold text-gray-900">
-          {signUp ? 'Sign up' : 'Sign in to your account'}
+      <div className="mx-auto w-full max-w-sm lg:w-96">
+        <h2 className="my-6 text-center text-3xl font-extrabold text-gray-900">
+          {signUp ? 'Sign up' : 'Sign in'}
         </h2>
         <p className="font-light">
           {signUp ? 'Already have an account?' : 'Don’t have an account?'}
@@ -41,7 +43,7 @@ const SignUpForm: FC<Props> = ({ signUp }) => {
             value={password}
             onChange={setPassword}
           />
-          <div>
+          <div className="flex flex-col gap-4">
             <Button onClick={handleSubmit} title="Sign up" type="secondary" />
           </div>
         </form>
