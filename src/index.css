@@ -2,9 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes avatar-fade-in {
+  0% {
+    opacity: 0;
+  }
+  17% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @layer base {
   body {
     background-color: #f3f4f6;
     font-family: Roboto, sans-serif;
+  }
+
+  .animation1 {
+    animation: avatar-fade-in 4s;
+  }
+
+  .animation2 {
+    animation: avatar-fade-in 3s;
+  }
+
+  .animation3 {
+    animation: avatar-fade-in 3.5s;
+  }
+
+  .animation4 {
+    animation: avatar-fade-in 2.5s;
   }
 }

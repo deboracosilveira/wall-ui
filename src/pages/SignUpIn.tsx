@@ -1,7 +1,17 @@
 import { FC } from 'react';
+import { Avatars, SignUpForm } from '../components';
 
-const SignUpIn: FC = () => {
-  return <div>SignUpIn</div>;
+interface Props {
+  signUp?: boolean;
+}
+
+const SignUpIn: FC<Props> = ({ signUp }) => {
+  return (
+    <div className="flex min-h-screen">
+      <SignUpForm signUp={signUp} />
+      <Avatars />
+    </div>
+  );
 };
 
 export default SignUpIn;

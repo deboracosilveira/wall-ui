@@ -5,7 +5,7 @@ import { SignUpIn, Wall } from './pages';
 const AppRoutes: FC = () => (
   <Routes>
     <Route path="/" element={<Wall />} />
-    <Route path="/sign-up" element={<SignUpIn />} />
+    <Route path="/sign-up" element={<SignUpIn signUp />} />
     <Route path="/sign-in" element={<SignUpIn />} />
   </Routes>
 );

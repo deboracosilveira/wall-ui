@@ -8,7 +8,7 @@ const GuestBanner: FC = () => {
       <span className="hidden text-xl font-light text-white md:block">
         Don’ t miss the chance to interact with us!
       </span>
-      <div className="flex w-full justify-around md:w-auto">
+      <div className="flex w-full items-center justify-around gap-6 md:w-auto">
         <Link to="/sign-in">
           <Button title="Sign in" type="outlined" />
         </Link>
