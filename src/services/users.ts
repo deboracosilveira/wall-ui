@@ -19,3 +19,21 @@ export const registerUser = async (
     return error.response.data;
   }
 };
+
+export const starNewUserSession = async (
+  email: string,
+  password: string
+): Promise<any> => {
+  try {
+    const response = await axiosClient.post('/signin', {
+      user: {
+        email,
+        password
+      }
+    });
+
+    return Promise.resolve(response?.data);
+  } catch (error: any) {
+    return error.response.data;
+  }
+};

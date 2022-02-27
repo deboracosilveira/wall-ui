@@ -1,15 +1,21 @@
-import { FC, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { FC, useContext, useState } from 'react';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { Alert, Button, Input } from '..';
+import { Context } from '../../context/Context';
 
 const SignInForm: FC = () => {
   const redirectFromConfirmation = useLocation().search.includes('confirmed');
+
+  const { signUserIn, signInResponse, user } = useContext(Context);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log('submit');
+  const handleSubmit = async () => {
+    signUserIn(email, password);
   };
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <div className="flex-1 flex-col justify-center py-16 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -47,6 +53,14 @@ const SignInForm: FC = () => {
             onChange={setPassword}
           />
           <div className="flex flex-col gap-4">
+            {signInResponse && (
+              <div className="mb-6">
+                <Alert
+                  message={signInResponse.message}
+                  type={signInResponse.type}
+                />
+              </div>
+            )}
             <Button onClick={handleSubmit} title="Sign in" type="secondary" />
           </div>
         </div>

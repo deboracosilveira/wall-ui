@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import { getAllPosts } from '../services/posts';
-import { registerUser } from '../services/users';
+import { registerUser, starNewUserSession } from '../services/users';
 import Post from '../types/post';
+import User from '../types/user';
 
 export const Context = createContext({} as any);
 
 const Provider = ({ children }: { children: any }) => {
-  const [posts, setPosts] = useState<Post[]>();
-  const [signUpResponse, setSignUpResponse] = useState<any>(undefined);
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [signUpResponse, setSignUpResponse] = useState<any>(null);
+  const [signInResponse, setSignInResponse] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   const getPosts = async () => {
     const allPosts = await getAllPosts();
@@ -18,21 +22,52 @@ const Provider = ({ children }: { children: any }) => {
   const signUserUp = async (name: string, email: string, password: string) => {
     const response = await registerUser(name, email, password);
 
-    if (response && response.errors) {
-      setSignUpResponse({ type: 'error', message: response.errors.message });
-    } else {
+    if (response.data) {
       setSignUpResponse({ type: 'info', message: response.data.message });
+    } else {
+      setSignUpResponse({ type: 'error', message: response.errors.message });
+    }
+  };
+
+  const signUserIn = async (email: string, password: string) => {
+    const response = await starNewUserSession(email, password);
+
+    if (response.data && response.token) {
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.data));
+
+      setUser(response.data);
+      setToken(response.token);
+    } else {
+      setSignInResponse({ type: 'error', message: response.errors.message });
+      setUser(null);
+      setToken(null);
+    }
+  };
+
+  const getLoggedUser = () => {
+    const loggedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const loggedUserToken = localStorage.getItem('token');
+    console.log('user', loggedUser);
+    console.log('token', loggedUserToken);
+    if (loggedUser && loggedUserToken) {
+      setUser(loggedUser);
+      setToken(loggedUserToken);
     }
   };
 
   useEffect(() => {
     getPosts();
+    getLoggedUser();
   }, []);
 
   const ContextValues = {
     posts,
     signUserUp,
-    signUpResponse
+    signUpResponse,
+    signUserIn,
+    signInResponse,
+    user
   };
 
   return (
