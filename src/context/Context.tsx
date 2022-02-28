@@ -9,15 +9,23 @@ import {
 import Post from '../types/post';
 import User from '../types/user';
 
+interface SignUpInResponse {
+  type: string;
+  message: string;
+}
+
 export const Context = createContext({} as any);
 
-const Provider = ({ children }: { children: any }) => {
+const Provider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[] | null>(null);
-  const [signUpResponse, setSignUpResponse] = useState<any>(null);
-  const [signInResponse, setSignInResponse] = useState<any>(null);
+  const [signUpResponse, setSignUpResponse] = useState<SignUpInResponse | null>(
+    null
+  );
+  const [signInResponse, setSignInResponse] = useState<SignUpInResponse | null>(
+    null
+  );
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
 
   const getPosts = async () => {
     setLoading(true);
@@ -54,11 +62,9 @@ const Provider = ({ children }: { children: any }) => {
       localStorage.setItem('user', JSON.stringify(response.data));
 
       setUser(response.data);
-      setToken(response.token);
     } else {
       setSignInResponse({ type: 'error', message: response.errors.message });
       setUser(null);
-      setToken(null);
     }
     setLoading(false);
   };
@@ -68,7 +74,6 @@ const Provider = ({ children }: { children: any }) => {
     const loggedUserToken = localStorage.getItem('token');
     if (loggedUser && loggedUserToken) {
       setUser(loggedUser);
-      setToken(loggedUserToken);
     }
   };
 
@@ -77,7 +82,6 @@ const Provider = ({ children }: { children: any }) => {
 
     if (response.status === 204) {
       setUser(null);
-      setToken(null);
       localStorage.setItem('token', '');
       localStorage.setItem('user', '');
     }

@@ -10,12 +10,14 @@ interface Props {
 const AuthedBanner: FC<Props> = ({ user, signUserOut }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
-  const container = useRef<any>(null);
+  const container = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (!container.current.contains(event.target)) {
-        if (!showUserMenu) return;
-        setShowUserMenu(false);
+      if (container.current !== null) {
+        if (!container.current.contains(event.target as Node)) {
+          if (!showUserMenu) return;
+          setShowUserMenu(false);
+        }
       }
     };
 
