@@ -37,3 +37,13 @@ export const starNewUserSession = async (
     return error.response.data;
   }
 };
+
+export const deleteUserSession = async (): Promise<any> => {
+  try {
+    const response = await axiosClient.delete('/signout');
+
+    return Promise.resolve(response);
+  } catch (error: any) {
+    return Promise.reject(error);
+  }
+};

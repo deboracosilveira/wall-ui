@@ -5,8 +5,9 @@ import User from '../../types/user';
 
 interface Props {
   user: User;
+  signUserOut: () => void;
 }
-const AuthedBanner: FC<Props> = ({ user }) => {
+const AuthedBanner: FC<Props> = ({ user, signUserOut }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const container = useRef<any>(null);
@@ -42,8 +43,8 @@ const AuthedBanner: FC<Props> = ({ user }) => {
             <ul className="py-1">
               <li>
                 <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => signUserOut()}>
                   Sign out
                 </a>
               </li>

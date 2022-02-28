@@ -28,7 +28,7 @@ const Button: FC<Props> = ({ onClick, title, type }) => {
       onClick={onClick}
       className={`
         text-md flex w-full items-center justify-center rounded-md bg-opacity-80
-        px-4 py-2 font-medium hover:bg-opacity-100 ${style[type].class}
+        px-4 py-2 font-medium hover:bg-opacity-100 focus:outline-none ${style[type].class}
       `}>
       {title}
     </button>

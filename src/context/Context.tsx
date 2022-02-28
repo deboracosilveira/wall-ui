@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import { getAllPosts, creatPost } from '../services/posts';
-import { registerUser, starNewUserSession } from '../services/users';
+import {
+  registerUser,
+  starNewUserSession,
+  deleteUserSession
+} from '../services/users';
 import Post from '../types/post';
 import User from '../types/user';
 
@@ -59,6 +63,17 @@ const Provider = ({ children }: { children: any }) => {
     }
   };
 
+  const signUserOut = async () => {
+    const response = await deleteUserSession();
+
+    if (response.status === 204) {
+      setUser(null);
+      setToken(null);
+      localStorage.setItem('token', '');
+      localStorage.setItem('user', '');
+    }
+  };
+
   useEffect(() => {
     getPosts();
     getLoggedUser();
@@ -71,7 +86,8 @@ const Provider = ({ children }: { children: any }) => {
     signUserIn,
     signInResponse,
     user,
-    newPost
+    newPost,
+    signUserOut
   };
 
   return (
