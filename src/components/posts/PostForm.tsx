@@ -1,9 +1,9 @@
 import { FC, useContext, useState } from 'react';
 import { Context } from '../../context/Context';
-import { Button } from '..';
+import { Button, Loader } from '..';
 
 const PostForm: FC = () => {
-  const { user, newPost } = useContext(Context);
+  const { loading, newPost, user } = useContext(Context);
 
   const [content, setContent] = useState('');
 
@@ -34,7 +34,13 @@ const PostForm: FC = () => {
           <div className="flex justify-between pt-4">
             <div className="flex items-center space-x-5"></div>
             <div className="flex-shrink-0">
-              <Button onClick={handleSubmit} title="Post" type="primary" />
+              <Button
+                onClick={handleSubmit}
+                title="Post"
+                type="primary"
+                disabled={loading}>
+                {loading && <Loader />}
+              </Button>
             </div>
           </div>
         </div>

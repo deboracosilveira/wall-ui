@@ -1,12 +1,12 @@
 import { FC, useContext, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { Alert, Button, Input } from '..';
+import { Alert, Button, Input, Loader } from '..';
 import { Context } from '../../context/Context';
 
 const SignInForm: FC = () => {
   const redirectFromConfirmation = useLocation().search.includes('confirmed');
 
-  const { signUserIn, signInResponse, user } = useContext(Context);
+  const { loading, signUserIn, signInResponse, user } = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,7 +61,13 @@ const SignInForm: FC = () => {
                 />
               </div>
             )}
-            <Button onClick={handleSubmit} title="Sign in" type="secondary" />
+            <Button
+              onClick={handleSubmit}
+              title="Sign in"
+              type="secondary"
+              disabled={loading}>
+              {loading && <Loader />}
+            </Button>
           </div>
         </div>
       </div>

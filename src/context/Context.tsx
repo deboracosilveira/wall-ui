@@ -12,6 +12,7 @@ import User from '../types/user';
 export const Context = createContext({} as any);
 
 const Provider = ({ children }: { children: any }) => {
+  const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[] | null>(null);
   const [signUpResponse, setSignUpResponse] = useState<any>(null);
   const [signInResponse, setSignInResponse] = useState<any>(null);
@@ -19,16 +20,21 @@ const Provider = ({ children }: { children: any }) => {
   const [token, setToken] = useState<string | null>(null);
 
   const getPosts = async () => {
+    setLoading(true);
     const allPosts = await getAllPosts();
     setPosts(allPosts.data);
+    setLoading(false);
   };
 
   const newPost = async (content: string) => {
+    setLoading(true);
     await creatPost(content);
     getPosts();
+    setLoading(false);
   };
 
   const signUserUp = async (name: string, email: string, password: string) => {
+    setLoading(true);
     const response = await registerUser(name, email, password);
 
     if (response.data) {
@@ -36,9 +42,11 @@ const Provider = ({ children }: { children: any }) => {
     } else {
       setSignUpResponse({ type: 'error', message: response.errors.message });
     }
+    setLoading(false);
   };
 
   const signUserIn = async (email: string, password: string) => {
+    setLoading(true);
     const response = await starNewUserSession(email, password);
 
     if (response.data && response.token) {
@@ -52,6 +60,7 @@ const Provider = ({ children }: { children: any }) => {
       setUser(null);
       setToken(null);
     }
+    setLoading(false);
   };
 
   const getLoggedUser = () => {
@@ -80,6 +89,7 @@ const Provider = ({ children }: { children: any }) => {
   }, []);
 
   const ContextValues = {
+    loading,
     posts,
     signUserUp,
     signUpResponse,

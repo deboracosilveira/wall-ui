@@ -1,10 +1,10 @@
 import { FC, useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { Alert, Button, Input } from '..';
+import { Alert, Button, Input, Loader } from '..';
 import { Context } from '../../context/Context';
 
 const SignUpForm: FC = () => {
-  const { signUserUp, signUpResponse, user } = useContext(Context);
+  const { loading, signUserUp, signUpResponse, user } = useContext(Context);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -47,7 +47,13 @@ const SignUpForm: FC = () => {
                 type={signUpResponse.type}
               />
             )}
-            <Button onClick={handleSubmit} title="Sign up" type="secondary" />
+            <Button
+              onClick={handleSubmit}
+              title="Sign up"
+              type="secondary"
+              disabled={loading}>
+              {loading && <Loader />}
+            </Button>
           </div>
         </div>
       </div>
