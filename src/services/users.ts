@@ -44,6 +44,6 @@ export const deleteUserSession = async (): Promise<any> => {
 
     return Promise.resolve(response);
   } catch (error: any) {
-    return Promise.reject(error);
+    return error.response.data;
   }
 };

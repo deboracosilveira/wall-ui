@@ -33,8 +33,8 @@ const Button: FC<Props> = ({ children, disabled, onClick, title, type }) => {
       disabled={disabled}
       onClick={onClick}
       className={`
-        text-md flex w-full items-center justify-center rounded-md bg-opacity-80
-        px-4 py-2 font-medium hover:bg-opacity-100 focus:outline-none ${style[type].class} ${disabledStyle}
+        text-md flex h-10 w-full items-center justify-center rounded-md bg-opacity-80 px-4 py-2
+        font-medium hover:bg-opacity-100 focus:outline-none ${style[type].class} ${disabledStyle}
       `}>
       {children ? children : title}
     </button>

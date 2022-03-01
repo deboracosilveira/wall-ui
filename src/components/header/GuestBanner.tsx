@@ -6,7 +6,7 @@ const GuestBanner: FC = () => {
   return (
     <div className="flex w-full items-center justify-between">
       <span className="hidden text-xl font-light text-white md:block">
-        Don’ t miss the chance to interact with us!
+        Don’t miss the chance to interact with us!
       </span>
       <div className="flex w-full items-center justify-around gap-6 md:w-auto">
         <Link to="/sign-in">

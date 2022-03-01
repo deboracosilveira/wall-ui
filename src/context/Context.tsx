@@ -7,12 +7,8 @@ import {
   deleteUserSession
 } from '../services/users';
 import Post from '../types/post';
+import SignUpInResponse from '../types/signUpInResponse';
 import User from '../types/user';
-
-interface SignUpInResponse {
-  type: string;
-  message: string;
-}
 
 export const Context = createContext({} as any);
 

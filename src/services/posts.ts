@@ -5,8 +5,8 @@ export const getAllPosts = async (): Promise<any> => {
     const response = await axiosClient.get('/posts');
 
     return Promise.resolve(response?.data);
-  } catch (error) {
-    return Promise.reject(error);
+  } catch (error: any) {
+    return error.response.data;
   }
 };
 
@@ -21,7 +21,7 @@ export const creatPost = async (content: string): Promise<any> => {
     const response = await axiosClient.post('/posts', { post: { content } });
 
     return Promise.resolve(response?.data);
-  } catch (error) {
-    return Promise.reject(error);
+  } catch (error: any) {
+    return error.response.data;
   }
 };
