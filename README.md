@@ -34,3 +34,4 @@ Run app on `http://localhost:3000`:
 
 ## DEPLOY
 The app is hosted on [Heroku](https://www.heroku.com/) at https://wall-ui.herokuapp.com/
+If you are testing the sign up confirmation email in production, please also check your spam box.
