@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# WALL UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Wall UI is a frontend app built with [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/) & [Tailwindcss](https://tailwindcss.com/).
 
-## Available Scripts
+Referring backend app can be found [here](https://github.com/deboracosilveira/wall-api).
 
-In the project directory, you can run:
+## CONCEPT
+### _Elas Codam Wall_
+A place to gather people interested in Elas Codam, so they can share thoughts, experience, events and more!
 
-### `npm start`
+[Elas Codam](https://www.linkedin.com/company/elas-codam/) is a women's tech community founded by me, [Débora Silveira](https://www.linkedin.com/in/deborasilveira/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We work together toward a better and more inclusive world!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## DESIGN
+The design prototype can be found on [Figma](https://www.figma.com/file/LhOjCrlrwH7KB38funOGMj/Wall-UI). You can use the main menu to navigate through the pages: `Wall guest`, `Wall authed` and `Sign up/in`. 
 
-### `npm test`
+## DEVELOP
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Notice, you should have [nvm](https://github.com/nvm-sh/nvm) or [NodeJS](https://nodejs.org/en/) installed to run this app.
 
-### `npm run build`
+The app relies on an environment variable in order to operate correctly.
+For running it locally, create a `.env` file with same content as [.env.example](.env.example).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install dependencies:
+```sh
+%> npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run app on `http://localhost:3000`:
+```sh
+%> npm run start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## DEPLOY
+The app is hosted on [Heroku](https://www.heroku.com/) at https://wall-ui.herokuapp.com/
